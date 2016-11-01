@@ -1,0 +1,19 @@
+﻿@using StreamPowered.Web.Models.Home
+@model IEnumerable<GamesViewModel>
+
+@{
+    ViewBag.Title = "Game By Genre";
+}
+
+<div class="row">
+    <h3>All Games in: <span class="btn btn-primary btn-sm" style="font-size: 20px; margin-left: 10px">@ViewBag.Genre</span></h3>
+    <div>
+        <div>
+            @foreach (var game in Model)
+            {
+                @Html.DisplayFor(g => game)
+            }
+        </div>
+        <div>@Html.Partial("_Pagination")</div>
+    </div>
+</div>

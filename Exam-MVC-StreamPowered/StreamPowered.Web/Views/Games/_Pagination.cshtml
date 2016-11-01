@@ -1,0 +1,14 @@
+﻿<ul class="pagination">
+    @{
+        bool isFirstPage = ViewBag.CurrentPage == 1;
+        bool isLastPage = ViewBag.CurrentPage == ViewBag.MaxPages;
+    }
+
+    @for (int i = 1; i <= ViewBag.MaxPages; i++)
+    {
+        <li class="@(ViewBag.CurrentPage == i ? "active": "")">
+            @Html.ActionLink(i.ToString(), "AllGames", new { page = i, count = 5 })
+        </li>
+    }
+
+</ul>

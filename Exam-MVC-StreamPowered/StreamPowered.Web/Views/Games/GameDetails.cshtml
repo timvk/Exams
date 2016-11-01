@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNet.Identity
+@using StreamPowered.Web.Models.Game
+@using StreamPowered.Web.Models.Review
+@model GameDetailsViewModel
+@{
+    ViewBag.Title = "GameDetails";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div>
+            <h3>@Model.Title <span class="btn btn-warning btn-sm" style="margin: 2px">@Model.AverageRating</span></h3>
+        </div>
+
+        <div>
+            <p>Genre: @Html.ActionLink(Model.Genre, "GamesByGenre", "Games", new {Id = Model.GenreId}, new {@class = "btn btn-primary btn-sm", @style = "margin: 2px"})</p>
+        </div>
+
+        <div class="container">
+            
+        </div>
+
+        <div>
+            <h4>Description:</h4>
+            <div>@Model.Description</div>
+        </div>
+
+        <div>
+            <h4>System Requirements:</h4>
+            <div>@Model.SystemRequirements</div>
+        </div>
+
+        <div>
+            <h4>Images:</h4>
+            <div>
+                @foreach (var image in Model.ImageUrl)
+                {
+                    <img src="@image" alt="" style="width: 200px; height: 100px; margin: 10px;" />
+                }
+            </div>            
+        </div>
+
+
+        <div>
+            <h4>Reviews:</h4>
+
+            @if (this.Request.IsAuthenticated)
+            {
+                <div>
+                    @Html.Partial("_AddReview", new ReviewBindingModel() { GameId = Model.Id })
+                </div>
+            }
+
+            @if (!Model.Reviews.Any())
+            {
+                <div>There are no reviews right now.</div>
+            }
+            else
+            {
+                foreach (var review in Model.Reviews)
+                {
+                    <div class=" well well-lg">
+                        <div>@review.Content</div>
+                        <div>
+                            <i class="glyphicon glyphicon-user"></i><strong>@review.Author</strong> on @review.CreatedOn 
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

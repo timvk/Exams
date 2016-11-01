@@ -1,0 +1,20 @@
+﻿@using StreamPowered.Web.Models.Home
+@model HomeViewModel
+           
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                @Html.Partial("_GetTopFiveGames")
+            </div>
+        </div>
+
+        <div class="col-md-5" style="margin-left: 60px">
+            @Html.Partial("_GetTopFiveReview")
+        </div>
+    </div>
+</div>

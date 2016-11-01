@@ -1,0 +1,15 @@
+﻿@using StreamPowered.Web.Models.Home
+@model HomeViewModel
+
+<div class="row">
+    <h3>Highest-Rated Games:</h3>
+    @foreach (var game in Model.Games)
+    {
+        <h4>@Html.ActionLink(game.Title, "GameDetails", "Games", new { Id = game.Id }, null)<span class="btn btn-warning btn-sm" style="font-size: 20px; margin-left: 10px">@game.AverageRating</span></h4>
+        foreach (var image in game.ImageUrl)
+        {
+                <img src="@image" alt="" />            
+        }
+    }
+</div>
+

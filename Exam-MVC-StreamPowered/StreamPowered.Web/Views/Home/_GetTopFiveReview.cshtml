@@ -1,0 +1,18 @@
+﻿@using StreamPowered.Web.Models.Home
+@model HomeViewModel
+
+<div class="row">
+    <h3>Latest Reviews:</h3>
+    @foreach (var review in Model.Reviews)
+    {
+        <div class=" well well-lg">
+            <div>@review.Content</div>
+            <br />
+            <div><i class="glyphicon glyphicon-user"></i><strong>@review.Author</strong> on @review.CreatedOn</div>
+            <div>
+                on game @Html.ActionLink(review.Game, "GameDetails", "Games", new { Id = review.GameId }, null)
+            </div>
+        </div>
+
+    }
+</div>

@@ -1,0 +1,8 @@
+﻿@using StreamPowered.Web.Models.Home
+@model GamesViewModel
+
+<h4>@Html.ActionLink(Model.Title, "GameDetails", "Games", new { Id = Model.Id }, null)<span class="btn btn-warning btn-sm" style="font-size: 20px; margin-left: 10px">@Model.AverageRating</span></h4>
+@foreach (var image in Model.ImageUrl)
+{
+    <img src="@image" alt="" />
+}
